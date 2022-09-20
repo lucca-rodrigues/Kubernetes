@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "nodeserver"
+  labels:
+    app: "nodeserver"
+
+spec:
+  containers:
+    - name: nodeserver
+      image: "luccarodrigues/kubernetes:latest"
