@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeserver
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodeserver
+  template:
+    metadata:
+      labels:
+        app: nodeserver
+    spec:
+      containers:
+        - name: nodeserver
+          image: "luccarodrigues/kubernetes:v2"
+          env:
+            - name: APINAME
+              valueFrom:
+                configMapKeyRef:
+                  name: nodeserver-env
+                  key: APINAME
+
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: nodeserver-env
+                  key: PORT
