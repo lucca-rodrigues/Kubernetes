@@ -15,15 +15,18 @@ spec:
       containers:
         - name: nodeserver
           image: "luccarodrigues/kubernetes:v2"
-          env:
-            - name: APINAME
-              valueFrom:
-                configMapKeyRef:
-                  name: nodeserver-env
-                  key: APINAME
+          envFrom:
+            - configMapRef:
+                name: nodeserver-env
+          # env:
+          #   - name: APINAME
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: nodeserver-env
+          #         key: APINAME
 
-            - name: PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: nodeserver-env
-                  key: PORT
+          #   - name: PORT
+          #     valueFrom:
+          #       configMapKeyRef:
+          #         name: nodeserver-env
+          #         key: PORT
