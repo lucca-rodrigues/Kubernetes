@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodeserver
+  template:
+    metadata:
+      labels:
+        app: nodeserver
+    spec:
+      containers:
+        - name: nodeserver
+          image: "luccarodrigues/kubernetes:v2"
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            periodSeconds: 5 # Testa a cada 5 segundos a reta /healthz
+            failureThreshold: 1 # É o limite de quantas vezes pode ocorrer o erro, e depois disso reinicia o container
+            timeoutSeconds: 1 # Tempo de timeout
+            successThreshold: 3 # Quantidade de vezes que ele testa e verifica se a aplicação esta ok

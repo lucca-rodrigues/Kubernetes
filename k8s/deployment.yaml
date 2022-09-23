@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: nodeserver
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: nodeserver
@@ -15,18 +15,6 @@ spec:
       containers:
         - name: nodeserver
           image: "luccarodrigues/kubernetes:v2"
-          envFrom:
-            - configMapRef:
-                name: nodeserver-env
-          # env:
-          #   - name: APINAME
-          #     valueFrom:
-          #       configMapKeyRef:
-          #         name: nodeserver-env
-          #         key: APINAME
-
-          #   - name: PORT
-          #     valueFrom:
-          #       configMapKeyRef:
-          #         name: nodeserver-env
-          #         key: PORT
+          # envFrom:
+          #   - configMapRef:
+          #       name: nodeserver-env
