@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodeserver
+  template:
+    metadata:
+      labels:
+        app: nodeserver
+    spec:
+      containers:
+        - name: nodeserver
+          image: "luccarodrigues/kubernetes:v2"
+
+          startUpProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            periodSeconds: 3
+            failureThreshold: 30
+
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            periodSeconds: 3
+            failureThreshold: 1
+
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 3000
+            periodSeconds: 5
+            failureThreshold: 3
+            timeoutSecondes: 1
+            successThreshold: 15
