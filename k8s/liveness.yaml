@@ -23,3 +23,4 @@ spec:
             failureThreshold: 1 # É o limite de quantas vezes pode ocorrer o erro, e depois disso reinicia o container
             timeoutSeconds: 1 # Tempo de timeout
             successThreshold: 3 # Quantidade de vezes que ele testa e verifica se a aplicação esta ok
+            inicialDelaySeconds: 10 # Quando sabemos quanto tempo o app leva para iniciar, podemos inserir o tempo de início para ele
