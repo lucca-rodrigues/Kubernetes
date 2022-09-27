@@ -22,3 +22,16 @@ spec:
           env:
             - name: MYSQL_ROOT_PASSOWRD
               value: root
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: mysql-volume
+
+volumeClaimTemplates:
+  - metadata:
+    name: mysql-volume
+    spec:
+      acessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 5Gi
