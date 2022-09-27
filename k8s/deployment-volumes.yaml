@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodeserver
+  template:
+    metadata:
+      labels:
+        app: nodeserver
+    spec:
+      containers:
+        - name: nodeserver
+          image: "luccarodrigues/kubernetes:v2"
+          volumeMounts:
+            - mountPath: /var/run/
+              name: config
+              readonly: true
+            - mountPath: /var/pvc
+              name: nodeserver-volume
+
+      volumes:
+        - name: nodeserver-volume
+          persistentVolumeClaim:
+            claimName: nodeserver-pvc

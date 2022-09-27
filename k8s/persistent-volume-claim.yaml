@@ -1,0 +1,10 @@
+aiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nodeserver-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    resources:
+      storage: 5Gi
